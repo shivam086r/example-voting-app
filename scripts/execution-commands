@@ -1,0 +1,36 @@
+aks get-credentials --name azuredevops --resource-group azureci
+
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+kubectl get pods -n argocd
+
+kubectl get secrets -n argocd
+
+kubectl edit secret argocd-initial-admin-secret -n argocd
+
+copying argocd password
+
+echo UTd6Y3BKQlBSNmNDWXcwMw== | base64 --decode (also can decode online)
+--. decoded value = Q7zcpJBPR6cCYw03
+
+get svc -n argocd
+
+kubectl edit svc argocd-server -n argocd
+
+kubectl get node -o wide
+
+on browser node ip:node port
+
+search vmss> select nodepool> instance > adding nodeport in inbound rule
+
+creating access token from azure repo and pasting it on argocd as url.
+setting > repository
+https://token@dev.azure.com/shivam086r/voting-app/_git/voting-app
+
+token = <Azure-token>
+
+creating secrets to pull image from acr
+acr>settings> access-key > enabling admin user
+
+kubectl create secret docker-registry acr-secret --namespace default --docker-server=shivamazurecicd.azurecr.io --docker-username=shivamazurecicd --docker-password=<azure-personal-access-token> --docker-email=your-email@example.com
