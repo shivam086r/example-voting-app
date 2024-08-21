@@ -19,3 +19,4 @@ spec:
         name: worker
       imagePullSecrets:
       - name: acr-secret
+      
